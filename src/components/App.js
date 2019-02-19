@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../semantic/dist/semantic.min.css';
-import Projects from './Projects';
+import Projects from '../containers/ProjectsContainer';
 import Heading from './Heading';
 import Modal from './Modal';
 import fire from '../config/fbConfig';
