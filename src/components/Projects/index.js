@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProjectsList from './ProjectsList';
-import AddProject from './AddProject/AddProject';
+import AddProject from '../../containers/AddProjectContainer';
 import sampleProjects from './sampleProjects';
 import { Container, Tab, Header, List, Modal } from 'semantic-ui-react';
 

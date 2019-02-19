@@ -11,14 +11,18 @@ import {
 } from 'semantic-ui-react';
 import AddMember from './AddToList';
 import AddTech from './AddToList';
-function AddProject({ addNewProject, numOfProjects }) {
+
+function AddProject(props) {
+  console.log('props', props);
+  const { addNewProject, numOfProjects, createProject } = props;
   const blankProject = {
     id: `${numOfProjects + 1}`,
     name: '',
     active: true,
     members: [],
     tech: [],
-    description: ''
+    description: '',
+    projectLeader: 'default leader'
   };
   const [newProject, setNewProject] = useState(blankProject);
   const [errors, setErrors] = useState({});
@@ -32,7 +36,8 @@ function AddProject({ addNewProject, numOfProjects }) {
       });
     } else {
       setErrors({});
-      addNewProject(newProject);
+      // addNewProject(newProject);
+      createProject(newProject);
       setNewProject(blankProject);
     }
   };
@@ -47,7 +52,7 @@ function AddProject({ addNewProject, numOfProjects }) {
         {/* <Header size="large">Project Name</Header> */}
         <Input
           label="Project Name"
-          placeholder="Project Name"
+          placeholder="enter name"
           width={6}
           name="name"
           value={newProject.name}

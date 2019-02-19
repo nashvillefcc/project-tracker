@@ -26,7 +26,7 @@ function AddToList({ handleChange, type, children, listArr }) {
     <Form.Field>
       <Form.Input
         // label={`${type.toUpperCase()}`}
-        placeholder={`${type} name`}
+        placeholder={`${type.replace(/s$/, '')} name`}
         width={6}
         onChange={handleOnChange}
         value={newItem}
