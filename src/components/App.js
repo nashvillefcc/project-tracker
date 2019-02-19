@@ -9,29 +9,29 @@ import SignIn from './auth/SignIn';
 import SignUp from './auth/SignUp';
 
 function App() {
-  const [user, setUser] = useState({});
-  // const authListener = () => {
-  //   fire.auth().onAuthStateChanged(member => {
-  //     if (member) {
-  //       setLogin(member);
-  //     } else {
-  //       setLogin({});
-  //     }
-  //   });
-  // };
-  useEffect(() => {
-    const authListener = () => {
-      fire.auth().onAuthStateChanged(member => {
-        console.log('member', member);
-        if (member) {
-          setUser(member);
-        } else {
-          setUser({});
-        }
-      });
-    };
-    return authListener;
-  });
+  // const [user, setUser] = useState({});
+  // // const authListener = () => {
+  // //   fire.auth().onAuthStateChanged(member => {
+  // //     if (member) {
+  // //       setLogin(member);
+  // //     } else {
+  // //       setLogin({});
+  // //     }
+  // //   });
+  // // };
+  // useEffect(() => {
+  //   const authListener = () => {
+  //     fire.auth().onAuthStateChanged(member => {
+  //       console.log('member', member);
+  //       if (member) {
+  //         setUser(member);
+  //       } else {
+  //         setUser({});
+  //       }
+  //     });
+  //   };
+  //   return authListener;
+  // });
 
   return (
     <>

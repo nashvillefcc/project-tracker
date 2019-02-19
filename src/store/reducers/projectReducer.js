@@ -1,4 +1,4 @@
-const initState = { projects: [] };
+const initState = {};
 
 const projectReducer = (state = initState, action) => {
   switch (action.type) {

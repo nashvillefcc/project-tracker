@@ -16,7 +16,6 @@ function AddProject(props) {
   console.log('props', props);
   const { addNewProject, numOfProjects, createProject } = props;
   const blankProject = {
-    id: `${numOfProjects + 1}`,
     name: '',
     active: true,
     members: [],

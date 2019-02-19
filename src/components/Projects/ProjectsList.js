@@ -24,7 +24,7 @@ const ProjectsList = ({ projects, toggleProject, type }) => {
               <List.Item key={project.id}>
                 <Grid>
                   <Grid.Column width={3} textAlign="left">
-                    <Header size="large">{project.name}</Header>
+                    <Header size="big">{project.name}</Header>
                   </Grid.Column>
                   <Grid.Column
                     width={3}
