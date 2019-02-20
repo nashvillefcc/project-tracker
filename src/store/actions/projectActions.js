@@ -18,3 +18,35 @@ export function createProject(project) {
       });
   };
 }
+
+export function archiveProject(projectId) {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection('projects')
+      .doc(projectId)
+      .update({ active: false })
+      .then(() => {
+        dispatch({ type: 'EDIT_PROJECT', projectId });
+      })
+      .catch(err => {
+        dispatch({ type: 'CREATE_PROJECT_ERROR', err });
+      });
+  };
+}
+
+export function activateProject(projectId) {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection('projects')
+      .doc(projectId)
+      .update({ active: true })
+      .then(() => {
+        dispatch({ type: 'EDIT_PROJECT', projectId });
+      })
+      .catch(err => {
+        dispatch({ type: 'CREATE_PROJECT_ERROR', err });
+      });
+  };
+}

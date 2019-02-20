@@ -8,6 +8,9 @@ const projectReducer = (state = initState, action) => {
     case 'CREATE_PROJECT_ERROR':
       console.log('creating error: ', action.err);
       return state;
+    case 'EDIT_PROJECT':
+      console.log('creating:', action.projectId);
+      return state;
     default:
       return state;
   }

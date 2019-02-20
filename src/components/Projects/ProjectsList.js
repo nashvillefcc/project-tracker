@@ -12,7 +12,7 @@ import {
   Popup
 } from 'semantic-ui-react';
 
-const ProjectsList = ({ projects, toggleProject, type }) => {
+const ProjectsList = ({ projects, type, toggleProject }) => {
   // console.log('projects', projects);
   return (
     <>
@@ -24,7 +24,7 @@ const ProjectsList = ({ projects, toggleProject, type }) => {
               <List.Item key={project.id}>
                 <Grid>
                   <Grid.Column width={3} textAlign="left">
-                    <Header size="big">{project.name}</Header>
+                    <Header size="small">{project.name}</Header>
                   </Grid.Column>
                   <Grid.Column
                     width={3}
@@ -68,17 +68,25 @@ const ProjectsList = ({ projects, toggleProject, type }) => {
                   >
                     {type === 'Active' ? (
                       <Icon
-                        onClick={() => toggleProject(project.id)}
                         color="red"
                         name="trash"
                         circular
+                        onClick={e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleProject(project.id);
+                        }}
                       />
                     ) : (
                       <Icon
-                        onClick={() => toggleProject(project.id)}
                         color="blue"
                         name="undo"
                         circular
+                        onClick={e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleProject(project.id);
+                        }}
                       />
                     )}
                   </Grid.Column>

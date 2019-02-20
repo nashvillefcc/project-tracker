@@ -13,88 +13,9 @@ import {
   Loader
 } from 'semantic-ui-react';
 
-function Projects({ projects }) {
+function Projects({ projects, archiveProject, activateProject }) {
   //hooks
-  const [projectsList, setProjects] = useState(sampleProjects);
-
-  let activeProjectsList, archivedProjectsList, panes;
-  if (projects) {
-    archivedProjectsList = projects.filter(project => project.active === false);
-    activeProjectsList = projects.filter(project => project.active === true);
-
-    panes = [
-      {
-        menuItem: `Active (${activeProjectsList.length})`,
-        render: () => (
-          <Tab.Pane>
-            <Header size="huge">Active Projects</Header>
-            <List celled selection as="ul" verticalAlign="middle" size="huge">
-              <ProjectsList
-                projects={activeProjectsList}
-                toggleProject={toggleProject}
-                type="Active"
-              />
-            </List>
-          </Tab.Pane>
-        )
-      },
-      {
-        menuItem: `Archived (${archivedProjectsList.length})`,
-        render: () => (
-          <Tab.Pane>
-            <Header size="huge" color="grey">
-              Archived Projects
-            </Header>
-            <List celled selection as="ul" verticalAlign="middle" size="huge">
-              <ProjectsList
-                projects={archivedProjectsList}
-                toggleProject={toggleProject}
-                type="Archive"
-              />
-            </List>
-          </Tab.Pane>
-        )
-      },
-      {
-        menuItem: `Add New Project`,
-        render: () => (
-          <Tab.Pane>
-            <Header size="huge" color="grey">
-              Add Projects
-            </Header>
-            <AddProject
-              addNewProject={addNewProject}
-              numOfProjects={projectsList.length}
-            />
-          </Tab.Pane>
-        )
-      }
-    ];
-  }
-  const addNewProject = newProject => {
-    newProject.id = projectsList.length + 1;
-    setProjects([...projectsList, newProject]);
-  };
-  const deleteProject = id => {
-    let projects = projectsList.filter(project => project.id !== id);
-    setProjects([...projects]);
-  };
-  const toggleProject = id => {
-    let projects = projectsList.map(project => {
-      return project.id !== id
-        ? project
-        : { ...project, active: !project.active };
-    });
-    setProjects([...projects]);
-  };
-
-  if (projects) {
-    return (
-      <Container>
-        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </Container>
-    );
-  } else {
+  if (!projects) {
     return (
       <Segment>
         <Dimmer active>
@@ -103,6 +24,64 @@ function Projects({ projects }) {
       </Segment>
     );
   }
+
+  const archivedProjectsList = projects.filter(
+    project => project.active === false
+  );
+  const activeProjectsList = projects.filter(
+    project => project.active === true
+  );
+  const panes = [
+    {
+      menuItem: `Active (${activeProjectsList.length})`,
+      render: () => (
+        <Tab.Pane>
+          <Header size="huge">Active Projects</Header>
+          <List celled selection as="ul" verticalAlign="middle" size="huge">
+            <ProjectsList
+              projects={activeProjectsList}
+              type="Active"
+              toggleProject={archiveProject}
+            />
+          </List>
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: `Archived (${archivedProjectsList.length})`,
+      render: () => (
+        <Tab.Pane>
+          <Header size="huge" color="grey">
+            Archived Projects
+          </Header>
+          <List celled selection as="ul" verticalAlign="middle" size="huge">
+            <ProjectsList
+              projects={archivedProjectsList}
+              type="Archive"
+              toggleProject={activateProject}
+            />
+          </List>
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: `Add New Project`,
+      render: () => (
+        <Tab.Pane>
+          <Header size="huge" color="grey">
+            Add Projects
+          </Header>
+          <AddProject />
+        </Tab.Pane>
+      )
+    }
+  ];
+
+  return (
+    <Container>
+      <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+    </Container>
+  );
 }
 
 export default Projects;

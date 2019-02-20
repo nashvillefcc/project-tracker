@@ -14,7 +14,7 @@ import AddTech from './AddToList';
 
 function AddProject(props) {
   console.log('props', props);
-  const { addNewProject, numOfProjects, createProject } = props;
+  const { createProject } = props;
   const blankProject = {
     name: '',
     active: true,
